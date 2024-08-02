@@ -12,13 +12,13 @@ class PM100usb():
         self.zero_value = None
         self.write_delay = 0.1
 
-        res = self._init_dev()
-        if res == -1:
-            sys.exit()
-        self.idn(1)
-        self.reset()
-
-        self.sensor = self.get_sensor()
+        self.init_res = self._init_dev()
+        if self.init_res == -1:
+            self.sensor = None
+        else:
+            self.idn_msg = self.idn(1)
+            self.reset()
+            self.sensor = self.get_sensor()
 
     def _init_dev(self):
         for dev in self._rm.list_resources():
@@ -77,6 +77,9 @@ class PM100usb():
     
     def get_wavelength(self):
         return self.dev.query_ascii_values("corr:wav?")[0]
+
+    def get_autorange(self):
+        return self.dev.query_ascii_values("pow:rang:auto?")[0]
 
     def get_responsivity(self):
         return self.dev.query_ascii_values("corr:pow?")[0]
