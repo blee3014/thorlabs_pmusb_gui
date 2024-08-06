@@ -10,3 +10,7 @@ pyvisa-py
 pyusb
 libusb
 
+for gui:
+PySide6
+
+
