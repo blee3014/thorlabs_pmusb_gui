@@ -75,7 +75,7 @@ class Window(QMainWindow, Ui_wMainWindow):
 
         except:
             self.labelConnectionMsg.setText("SN must be 7 digit number")
-    
+
     def updateWavelength(self):
         self.wavelength = float(self.entryWavelength.text())
         print(self.wavelength)
@@ -83,7 +83,7 @@ class Window(QMainWindow, Ui_wMainWindow):
         self.dev.set_wavelength(self.wavelength)
         print(f"updating wavelength to {self.wavelength} nm")
         print(self.dev.get_error())
-    
+
     def updateAvg(self):
         self.avg = int(self.entryAvg.text())
         print(self.avg)
@@ -102,7 +102,7 @@ class Window(QMainWindow, Ui_wMainWindow):
         print(f"LPF {lpf}")
         print(self.dev.get_lowpass_filter())
         print(self.dev.get_error())
-    
+
     def updateAutoRange(self):
         self.ar = self.checkbuttonAutoRange.checkState()
         if self.ar.value == 2:
@@ -131,7 +131,7 @@ class Window(QMainWindow, Ui_wMainWindow):
         self.labelZeroUnit.setText(displayUnit)
         print(f"new Zero {self.zero/unitScale:.4f} {displayUnit}")
         print(self.dev.get_error())
-    
+
     @staticmethod
     def _getUnit(value):
         exponent = log10(abs(value))
